@@ -1,10 +1,8 @@
 # GRID Module
 
-## Setup
-
 ![Preview](Preview.png)
 
-### Installation
+### Setup
 
 ```bash
 # Clone the repository
