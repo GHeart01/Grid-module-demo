@@ -38,6 +38,7 @@ gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001)
 scene.add(directionalLight)
 
 
+
 /**
  * Materials
  */
@@ -154,6 +155,33 @@ renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.VSMShadowMap
 
 /**
+ * Preprocessing and Vignette
+ */
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const vignettePass = new ShaderPass(VignetteShader);
+vignettePass.uniforms['offset'].value = .6; // how far the vignette extends
+vignettePass.uniforms['darkness'].value = 1.5; // vignette darkness
+composer.addPass(vignettePass);
+
+const vignetteFolder = gui.addFolder('Vignette');
+
+// Add controls directly to main GUI
+gui.add(vignettePass.uniforms['offset'], 'value')
+    .name('Vignette Offset')
+    .min(0.0)
+    .max(2.0)
+    .step(0.01);
+
+gui.add(vignettePass.uniforms['darkness'], 'value')
+    .name('Vignette Darkness')
+    .min(0.0)
+    .max(2.5)
+    .step(0.01);
+
+/**
  * Animate
  */
 const clock = new THREE.Clock()
@@ -166,7 +194,8 @@ const tick = () =>
     controls.update()
 
     // Render
-    renderer.render(scene, camera)
+    // renderer.render(scene, camera)
+    composer.render()
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
