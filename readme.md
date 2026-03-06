@@ -9,7 +9,7 @@
 git clone https://github.com/GHeart01/Grid-module-demo
 
 # Navigate to project folder
-cd Grid-module-demo
+cd Grid-module-demo/Grid
 
 # Install dependencies (only the first time)
 npm install
