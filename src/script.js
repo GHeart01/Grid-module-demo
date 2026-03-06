@@ -12,7 +12,9 @@ import GUI from 'lil-gui'
  * Base
  */
 // Debug
-const gui = new GUI()
+const gui = new GUI({
+    title: 'Press h to Hide me'
+})
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -25,7 +27,7 @@ const scene = new THREE.Scene()
  */
 // Ambient light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1)
-gui.add(ambientLight, 'intensity').min(0).max(3).step(0.001)
+// gui.add(ambientLight, 'Ambient Lightintensity').min(0).max(3).step(0.001)
 // scene.add(ambientLight)
 
 // Spot Light
@@ -35,7 +37,7 @@ spotLight.penumbra = 0.25
 const spotLightFolder = gui.addFolder('Spot Light');
 
 spotLightFolder.add(spotLight, 'intensity')
-    .name('Intensity')
+    .name('Spot Light Intensity')
     .min(0)
     .max(3)
     .step(0.001);
@@ -192,6 +194,16 @@ const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'h' || event.key === 'H') {
+        if (gui.domElement.style.display === 'none') {
+            gui.domElement.style.display = '';
+        } else {
+            gui.domElement.style.display = 'none';
+        }
+    }
+});
 
 window.addEventListener('resize', () =>
 {
