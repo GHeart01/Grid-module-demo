@@ -29,9 +29,9 @@ gui.add(ambientLight, 'intensity').min(0).max(3).step(0.001)
 // scene.add(ambientLight)
 
 // Spot Light
-const spotLight = new THREE.SpotLight(0xaaaaaa, 1, 0, Math.PI / 4); 
-spotLight.position.set(0, 0.5, -1);
-
+const spotLight = new THREE.SpotLight(0xaaaaaa, 3, 0, -Math.PI / 4); 
+spotLight.position.set(0, 1, 0);
+spotLight.penumbra = 0.25
 const spotLightFolder = gui.addFolder('Spot Light');
 
 spotLightFolder.add(spotLight, 'intensity')
