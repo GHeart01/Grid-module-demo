@@ -1,6 +1,11 @@
 # Three.js Journey
 
 ## Setup
+
+Git Clone
+``` bash
+git clone https://github.com/GHeart01/Grid-module-demo
+```
 Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
 
