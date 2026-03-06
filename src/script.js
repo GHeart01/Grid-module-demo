@@ -1,5 +1,11 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
+import { EffectComposer } from 'three/examples/jsm/Addons.js'
+import { RenderPass } from 'three/examples/jsm/Addons.js'
+import { ShaderPass } from 'three/examples/jsm/Addons.js'
+import { VignetteShader } from 'three/examples/jsm/Addons.js'
+
 import GUI from 'lil-gui'
 
 /**
@@ -122,7 +128,8 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 1
+camera.rotation.set(0, 0, 0)
+camera.position.x = 0
 camera.position.y = 1
 camera.position.z = 2
 scene.add(camera)
