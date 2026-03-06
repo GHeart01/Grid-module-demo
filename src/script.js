@@ -75,7 +75,7 @@ for (let i = -10; i < 10; i++) {
 
         const spacing = 1.01
         plane.position.z = j * spacing 
-        plane.position.x = i * spacing
+        plane.position.x = i * spacing + .5
         plane.rotation.x = (Math.PI / 2)
 
         scene.add(plane)
@@ -93,6 +93,16 @@ scene.add(plane)
  */
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
+
+const helpers = {
+    axesHelperEnabled : true
+};
+
+gui.add(helpers, 'axesHelperEnabled')
+    .name('Show Axes Helper')
+    .onChange((enabled) => {
+        axesHelper.visible = enabled;
+    });
 
 /**
  * Shadows
@@ -168,14 +178,13 @@ composer.addPass(vignettePass);
 
 const vignetteFolder = gui.addFolder('Vignette');
 
-// Add controls directly to main GUI
-gui.add(vignettePass.uniforms['offset'], 'value')
+vignetteFolder.add(vignettePass.uniforms['offset'], 'value')
     .name('Vignette Offset')
     .min(0.0)
     .max(2.0)
     .step(0.01);
 
-gui.add(vignettePass.uniforms['darkness'], 'value')
+vignetteFolder.add(vignettePass.uniforms['darkness'], 'value')
     .name('Vignette Darkness')
     .min(0.0)
     .max(2.5)
