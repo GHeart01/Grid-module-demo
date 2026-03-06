@@ -2,6 +2,8 @@
 
 ## Setup
 
+![Preview](Preview.png)
+
 Git Clone
 ``` bash
 git clone https://github.com/GHeart01/Grid-module-demo
