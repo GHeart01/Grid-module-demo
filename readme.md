@@ -1,6 +1,6 @@
 # GRID Module
 
-![Preview](Preview.png)
+![Preview](./static/Preview.png)
 
 ### Setup
 
