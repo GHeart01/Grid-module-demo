@@ -28,13 +28,87 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 1)
 gui.add(ambientLight, 'intensity').min(0).max(3).step(0.001)
 // scene.add(ambientLight)
 
+// Spot Light
+const spotLight = new THREE.SpotLight(0xaaaaaa, 1, 0, Math.PI / 4); 
+spotLight.position.set(0, 0.5, -1);
+
+const spotLightFolder = gui.addFolder('Spot Light');
+
+spotLightFolder.add(spotLight, 'intensity')
+    .name('Intensity')
+    .min(0)
+    .max(3)
+    .step(0.001);
+
+spotLightFolder.add(spotLight.position, 'x')
+    .name('Position X')
+    .min(-5)
+    .max(5)
+    .step(0.001);
+
+spotLightFolder.add(spotLight.position, 'y')
+    .name('Position Y')
+    .min(-5)
+    .max(5)
+    .step(0.001);
+
+spotLightFolder.add(spotLight.position, 'z')
+    .name('Position Z')
+    .min(-5)
+    .max(5)
+    .step(0.001);
+
+// Add more useful spot light controls
+spotLightFolder.add(spotLight, 'angle')
+    .name('Angle')
+    .min(0)
+    .max(Math.PI / 2)
+    .step(0.01);
+
+spotLightFolder.add(spotLight, 'penumbra')
+    .name('Penumbra')
+    .min(0)
+    .max(1)
+    .step(0.01);
+
+spotLightFolder.add(spotLight, 'decay')
+    .name('Decay')
+    .min(0)
+    .max(2)
+    .step(0.01);
+
+spotLightFolder.add(spotLight, 'distance')
+    .name('Distance')
+    .min(0)
+    .max(20)
+    .step(0.1);
+
+// Add checkbox for visibility
+spotLightFolder.add(spotLight, 'visible')
+    .name('Visible');
+
+// Open the folder
+spotLightFolder.close();
+const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(spotLightHelper);
+
+
+
+scene.add(spotLight);
+
+
+
 // Directional light
 const directionalLight = new THREE.DirectionalLight(0xaaaaff, 1.5)
+
+const directionalLightFolder = gui.addFolder('Directional Light');
+
 directionalLight.position.set(0, .5, - 1)
-gui.add(directionalLight, 'intensity').min(0).max(3).step(0.001)
-gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001)
-gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001)
-gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001)
+directionalLightFolder.add(directionalLight, 'intensity').min(0).max(3).step(0.001)
+directionalLightFolder.add(directionalLight.position, 'x').name('Position X').min(- 5).max(5).step(0.001)
+directionalLightFolder.add(directionalLight.position, 'y').name('Position Y').min(- 5).max(5).step(0.001)
+directionalLightFolder.add(directionalLight.position, 'z').name('Position Z').min(- 5).max(5).step(0.001)
+directionalLightFolder.close()
 scene.add(directionalLight)
 
 
